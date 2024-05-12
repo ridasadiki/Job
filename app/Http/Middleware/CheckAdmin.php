@@ -17,7 +17,7 @@ class CheckAdmin
     {
         if($request->user()->role != 'admin'){
             session()->flash('error','You are not authorized to access this page.');
-            return redirect()->route('home');
+            return redirect()->route('account.profile');
         }
         return $next($request);
     }
