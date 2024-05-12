@@ -125,8 +125,9 @@ $("#changePasswordForm").submit(function(e){
         data: $("#changePasswordForm").serializeArray(),
         success: function(response) {
             if (response.status == true) {
-                $("#name").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html('');
-                $("#email").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html('');
+                $("#old_password").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html('');
+                $("#new_password").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html('');
+                $("#confirm_password").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html('');
                 window.location.href = '{{ route("account.profile") }}';
             } else {
                 var errors = response.errors;
