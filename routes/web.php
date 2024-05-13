@@ -12,6 +12,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/jobs', [JobsController::class, 'index'])->name('jobs');
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])->middleware(CheckAdmin::class)->name('admin.dashboard');
 Route::get('/admin/users', [UserController::class, 'index'])->middleware(CheckAdmin::class)->name('admin.users');
+Route::get('/admin/users/{id}', [UserController::class, 'edit'])->middleware(CheckAdmin::class)->name('admin.users.edit');
+Route::post('/admin/users/{id}', [UserController::class, 'update'])->middleware(CheckAdmin::class)->name('admin.users.update');
 
 Route::get('/jobs/detail/{id}', [JobsController::class, 'detail'])->name('jobDetail');
 Route::post('/jobs/apply-job', [JobsController::class, 'applyJob'])->name('applyJob');
