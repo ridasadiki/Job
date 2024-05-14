@@ -85,18 +85,18 @@
 
 @section('customJs')
 <script type="text/javascript">
-function deleteUser(){
-    if(confirm("Are You Sure You Want To Delete This User? ")){
-    $.ajax({
-        url:'{{ route("admin.users.destroy") }}',
-        type:'delete',
-        data:'',
-        dataType:'json',
-        success: function(response){
-            window.location.href='{{ route("admin.users") }}';
+function deleteUser(id) {
+        if(confirm("Are you sure you want to delete?")) {
+            $.ajax({
+                url: '{{ route("admin.users.destroy") }}',
+                type: 'delete',
+                data: { id: id},
+                dataType: 'json',
+                success: function(response) {
+                    window.location.href = "{{ route('admin.users') }}";
+                }
+            });
         }
-    });
-}
-}
+    }
 </script>
 @endsection
