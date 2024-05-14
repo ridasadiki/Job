@@ -14,6 +14,7 @@ Route::get('/admin/dashboard', [DashboardController::class, 'index'])->middlewar
 Route::get('/admin/users', [UserController::class, 'index'])->middleware(CheckAdmin::class)->name('admin.users');
 Route::get('/admin/users/{id}', [UserController::class, 'edit'])->middleware(CheckAdmin::class)->name('admin.users.edit');
 Route::post('/admin/users/{id}', [UserController::class, 'update'])->middleware(CheckAdmin::class)->name('admin.users.update');
+Route::delete('/admin/users', [UserController::class, 'destroy'])->middleware(CheckAdmin::class)->name('admin.users.destroy');
 
 Route::get('/jobs/detail/{id}', [JobsController::class, 'detail'])->name('jobDetail');
 Route::post('/jobs/apply-job', [JobsController::class, 'applyJob'])->name('applyJob');
