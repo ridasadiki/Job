@@ -20,7 +20,7 @@
             <div class="col-lg-9">
                 @include('front.layouts.message')
 
-                <form action="" method="POST" name="editJobForm" id="editJobForm">
+            <form action="" method="POST" name="editJobForm" id="editJobForm">
                 @csrf
                 <div class="card border-0 shadow mb-4 ">
                     <div class="card-body card-form p-4">
@@ -143,7 +143,7 @@
                         <button type="submit" class="btn btn-primary">Update Job</button>
                     </div>
                 </div>
-                </form>
+            </form>
 
             </div>
         </div>

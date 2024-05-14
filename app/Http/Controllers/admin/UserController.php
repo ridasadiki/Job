@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
     public function index(){
-        $users= User::orderBy('created_at','DESC')->paginate(10);
+        $users= User::orderBy('created_at','DESC')->paginate(5);
         return view('admin.users.list',[
             'users'=>$users
         ]);
