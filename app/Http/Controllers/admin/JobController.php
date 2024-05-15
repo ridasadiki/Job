@@ -28,7 +28,8 @@ class JobController extends Controller
             'jobTypes'=>$jobTypes
         ]);
     }
-    public function update(Request $request,$id){
+    public function update(Request $request, $id) {
+
         $rules = [
             'title' => 'required|min:5|max:200',
             'category' => 'required',
@@ -39,6 +40,7 @@ class JobController extends Controller
             'company_name' => 'required|min:3|max:75',
 
         ];
+
         $validator = Validator::make($request->all(),$rules);
 
         if ($validator->passes()) {
@@ -47,7 +49,6 @@ class JobController extends Controller
             $job->title = $request->title;
             $job->category_id = $request->category;
             $job->job_type_id  = $request->jobType;
-            $job->user_id = Auth::user()->id;
             $job->vacancy = $request->vacancy;
             $job->salary = $request->salary;
             $job->location = $request->location;
@@ -60,6 +61,9 @@ class JobController extends Controller
             $job->company_name = $request->company_name;
             $job->company_location = $request->company_location;
             $job->company_website = $request->website;
+
+            $job->status = $request->status;
+            $job->isFeatured = (!empty($request->isFeatured)) ? $request->isFeatured : 0;
             $job->save();
 
             session()->flash('success','Job updated successfully.');
@@ -68,7 +72,6 @@ class JobController extends Controller
                 'status' => true,
                 'errors' => []
             ]);
-
 
         } else {
             return response()->json([
