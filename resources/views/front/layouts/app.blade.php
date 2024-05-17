@@ -31,6 +31,15 @@
 					<li class="nav-item">
 						<a class="nav-link" aria-current="page" href="{{ route('jobs') }}">Find Jobs</a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link" aria-current="page" href="">Find Profile</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" aria-current="page" href="">About Us</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" aria-current="page" href="">Contact Us</a>
+					</li>
 				</ul>
 
 				@if (!Auth::check())
@@ -76,9 +85,9 @@
   </div>
 </div>
 
-<footer class="bg-dark py-3 bg-2">
+<footer class="bg-dark py-1 bg-1">
 <div class="container">
-    <p class="text-center text-white pt-3 fw-bold fs-6">© 2024 ISGA, all right reserved</p>
+    <p class="text-center text-white pt-3 fw-bold fs-8">© 2024 ISGA, all right reserved</p>
 </div>
 </footer>
 <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
