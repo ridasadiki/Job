@@ -118,14 +118,12 @@
                                 </div>
                             </div>
                             @endforeach
+                            <div class="col-md-12">
+                                {{ $jobs->withQueryString()->links() }}
+                            </div>
                             @else
                             <div class="col-md-4">Jobs not found</div>
                         @endif
-
-
-
-
-
                     </div>
                     </div>
                 </div>
@@ -138,38 +136,50 @@
 
 @section('customJs')
 <script>
-    $('searchForm').submit(function(e){
-        var url='{{ route('jobs') }}?';
-        var keyword=$('keyword').val();
-        var location=$('location').val();
-        var category=$('category').val();
-        var experience=$('experience').val();
-        var sort=$('sort').val();
-        var chechedJobTypes=$("input:checkbox[name='job_type']").mep(function(){
+    $("#searchForm").submit(function(e){
+        e.preventDefault();
+
+        var url = '{{ route("jobs") }}?';
+
+        var keyword = $("#keyword").val();
+        var location = $("#location").val();
+        var category = $("#category").val();
+        var experience = $("#experience").val();
+        var sort = $("#sort").val();
+
+        var checkedJobTypes = $("input:checkbox[name='job_type']:checked").map(function(){
             return $(this).val();
-        })
-        if(keyword != ""){
+        }).get();
+
+        if (keyword != "") {
             url += '&keyword='+keyword;
         }
-        if(location != ""){
+
+        if (location != "") {
             url += '&location='+location;
         }
-        if(category != ""){
+
+        if (category != "") {
             url += '&category='+category;
         }
-        if(experience != ""){
+
+        if (experience != "") {
             url += '&experience='+experience;
         }
 
-        if(chechedJobTypes.length>0){
-            url += '&jobType='+chechedJobTypes;
+        if (checkedJobTypes.length > 0) {
+            url += '&jobType='+checkedJobTypes;
         }
-        url+='$sort='+sort;
+
+        url += '&sort='+sort;
+
         window.location.href=url;
+
     });
+
     $("#sort").change(function(){
-        $('searchForm').submit();
-        url+='$sort='+sort;
+        $("#searchForm").submit();
     });
+
 </script>
 @endsection
