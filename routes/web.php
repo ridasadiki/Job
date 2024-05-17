@@ -22,6 +22,7 @@ Route::get('/admin/jobs/{id}', [JobController::class, 'edit'])->middleware(Check
 Route::match(['get', 'post'], '/admin/jobs/{id}', [JobController::class, 'update'])->middleware(CheckAdmin::class)->name('admin.jobs.update');
 Route::delete('/admin/users', [JobController::class, 'destroy'])->middleware(CheckAdmin::class)->name('admin.jobs.destroy');
 Route::get('/admin/job-applications', [JobApplicationController::class, 'index'])->middleware(CheckAdmin::class)->name('admin.jobApplications');
+Route::delete('/admin/job-applications', [JobApplicationController::class, 'destroy'])->middleware(CheckAdmin::class)->name('admin.jobApplications.destroy');
 
 Route::get('/jobs/edit/{id}',[JobController::class,'edit'])->name('admin.jobs.edit');
 Route::put('/jobs/{id}',[JobController::class,'update'])->name('admin.jobs.update');

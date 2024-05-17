@@ -15,4 +15,19 @@ class JobApplicationController extends Controller
 
         ]);
     }
+    public function destroy(Request $request){
+        $id = $request->id;
+        $jobApplication=JobApplication::find($id);
+        if($jobApplication==null){
+            session()->flash('error','Eiether Job Application Deleted Or Not Found.');
+            return response()->json([
+                'status'=>false
+            ]);
+        }
+        $jobApplication->delete();
+        session()->flash('success','Job Applicat ion Deleted Successfully.');
+            return response()->json([
+                'status'=>true
+            ]);
+    }
 }

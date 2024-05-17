@@ -59,7 +59,7 @@
                                                     </button>
                                                     <ul class="dropdown-menu dropdown-menu-end">
                                                         <li><a class="dropdown-item" href=""><i class="fa fa-edit" aria-hidden="true"></i> Edit</a></li>
-                                                        <li><a class="dropdown-item" href=""  ><i class="fa fa-trash" aria-hidden="true"></i> Delete</a></li>
+                                                        <li><a class="dropdown-item" onclick="deleteJobApplication({{ $application->id }})" href="javascript:void(0);"  ><i class="fa fa-trash" aria-hidden="true"></i> Delete</a></li>
                                                     </ul>
                                                 </div>
                                             </td>
@@ -82,6 +82,18 @@
 
 @section('customJs')
 <script type="text/javascript">
-
+function deleteJobApplication(id) {
+        if (confirm("Are you sure you want to delete?")) {
+            $.ajax({
+                url: '{{ route("admin.jobApplications.destroy") }}',
+                type: 'delete',
+                data: {id: id},
+                dataType: 'json',
+                success: function(response) {
+                    window.location.href = "{{ route('admin.jobApplications') }}";
+                }
+            });
+        }
+    }
 </script>
 @endsection
