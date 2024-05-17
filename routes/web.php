@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Middleware\CheckAdmin;
 
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\JobApplicationController;
 use App\Http\Controllers\admin\JobController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\JobsController;
@@ -19,6 +20,8 @@ Route::delete('/admin/users', [UserController::class, 'destroy'])->middleware(Ch
 Route::get('/admin/jobs', [JobController::class, 'index'])->middleware(CheckAdmin::class)->name('admin.jobs');
 Route::get('/admin/jobs/{id}', [JobController::class, 'edit'])->middleware(CheckAdmin::class)->name('admin.jobs.edit');
 Route::match(['get', 'post'], '/admin/jobs/{id}', [JobController::class, 'update'])->middleware(CheckAdmin::class)->name('admin.jobs.update');
+Route::delete('/admin/users', [JobController::class, 'destroy'])->middleware(CheckAdmin::class)->name('admin.jobs.destroy');
+Route::get('/admin/job-applications', [JobApplicationController::class, 'index'])->middleware(CheckAdmin::class)->name('admin.jobApplications');
 
 Route::get('/jobs/edit/{id}',[JobController::class,'edit'])->name('admin.jobs.edit');
 Route::put('/jobs/{id}',[JobController::class,'update'])->name('admin.jobs.update');
