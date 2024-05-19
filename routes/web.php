@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/jobs', [JobsController::class, 'index'])->name('jobs');
+
+Route::get('/forgot-password', [AccountController::class, 'forgotPassword'])->name('account.forgotPassword');
+Route::post('/process-forgot-password', [AccountController::class, 'processForgotPassword'])->name('account.processForgotPassword');
+Route::get('/reset-password/{token}', [AccountController::class, 'resetPassword'])->name('account.resetPassword');
+Route::post('/process-reset-password', [AccountController::class, 'processResetPassword'])->name('account.processResetPassword');
+
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])->middleware(CheckAdmin::class)->name('admin.dashboard');
 Route::get('/admin/users', [UserController::class, 'index'])->middleware(CheckAdmin::class)->name('admin.users');
 Route::get('/admin/users/{id}', [UserController::class, 'edit'])->middleware(CheckAdmin::class)->name('admin.users.edit');
